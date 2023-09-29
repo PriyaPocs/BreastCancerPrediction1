@@ -29,8 +29,8 @@ class DataIngestion:
 
         try:
            
-            # df=pd.read_csv(os.path.join('notebooks/data','breast_cancer_data.csv'))
-            df=self.DataFromMongoDB()
+            df=pd.read_csv(os.path.join('notebooks/data','breast_cancer_data.csv'))
+            # df=self.DataFromMongoDB()
 
             logging.info('Dataset read as pandas Dataframe')
 
