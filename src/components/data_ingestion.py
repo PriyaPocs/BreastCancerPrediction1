@@ -58,7 +58,7 @@ class DataIngestion:
             logging.info('Error occured in Data Ingestion config')
 
     def DataFromMongoDB(self):         
-            uri = "mongodb+srv://priya:mongo-priya@cluster0.6yz2ugn.mongodb.net/?retryWrites=true&w=majority"
+            uri = "Mongodb connection string"
             # Connect to MongoDB
             client = MongoClient(uri)
             database = client['MLProject']
