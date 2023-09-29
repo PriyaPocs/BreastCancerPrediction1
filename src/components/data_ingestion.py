@@ -4,7 +4,10 @@ from src.logger import logging
 from src.exception import CustomException
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_breast_cancer
 from dataclasses import dataclass
+from pymongo import MongoClient
+
 
 
 ## intialize the data ingestion configuration
@@ -25,7 +28,10 @@ class DataIngestion:
         logging.info('Data Ingestion method starts')
 
         try:
-            df=pd.read_csv(os.path.join('notebooks/data','breast_cancer_data.csv'))
+           
+            # df=pd.read_csv(os.path.join('notebooks/data','breast_cancer_data.csv'))
+            df=self.DataFromMongoDB()
+
             logging.info('Dataset read as pandas Dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exist_ok=True)
@@ -50,3 +56,17 @@ class DataIngestion:
 
         except Exception as e:
             logging.info('Error occured in Data Ingestion config')
+
+    def DataFromMongoDB(self):         
+            uri = "mongodb+srv://priya:mongo-priya@cluster0.6yz2ugn.mongodb.net/?retryWrites=true&w=majority"
+            # Connect to MongoDB
+            client = MongoClient(uri)
+            database = client['MLProject']
+            collection = database["breast_cancer_data"]
+            # Retrieve all data from the MongoDB collection
+            cursor = collection.find()
+            # Convert cursor data to a list of dictionaries
+            data_list = list(cursor)
+            # Create a Pandas DataFrame
+            df = pd.DataFrame(data_list)
+            return df

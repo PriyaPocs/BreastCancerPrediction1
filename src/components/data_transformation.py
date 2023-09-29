@@ -87,7 +87,8 @@ class DataTransformation:
             preprocessing_obj = self.get_data_transformation_object()
 
             target_column_name = 'target'
-            drop_columns = [target_column_name]
+            # drop_columns = [target_column_name]
+            drop_columns = ['_id','target']
 
             ## features into independent and dependent features
 
@@ -99,6 +100,7 @@ class DataTransformation:
             target_feature_test_df=test_df[target_column_name]
 
             ## apply the transformation
+
 
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
