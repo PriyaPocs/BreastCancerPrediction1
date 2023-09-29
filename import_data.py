@@ -16,7 +16,7 @@ modified_list = [string.replace(" ", "_") for string in feature_names]
 df = pd.DataFrame(data, columns=modified_list)
 # Add the target column to the DataFrame
 df['target'] = breast_cancer.target
-uri = "mongodb+srv://priya:mongo-priya@cluster0.6yz2ugn.mongodb.net/?retryWrites=true&w=majority"
+uri = "mongodbconnection String"
 # Connect to MongoDB
 client = MongoClient(uri)
 database = client['MLProject']
