@@ -87,8 +87,8 @@ class DataTransformation:
             preprocessing_obj = self.get_data_transformation_object()
 
             target_column_name = 'target'
-            # drop_columns = [target_column_name]
-            drop_columns = ['_id','target']
+            drop_columns = [target_column_name] # data comes from CSV
+            # drop_columns = ['_id','target'] --->If the data comes from MongoDB
 
             ## features into independent and dependent features
 
